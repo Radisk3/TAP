@@ -12,51 +12,65 @@
         echo "<h2> Olá " . $NOME . " este é o seu painel do sistema! </h2>";
     ?>
     <h2>Escolha uma das opções abaixo</h2>
+    <h2>CADASTRO</h2>
     <table align="center">
         <tr>
             <td><form method="POST" action="cadastrar/cadastro_banco.php" autocomplete="off">
-                <button type="submit" value="Banco">  Cadastrar novo banco  </button>
+                <button type="submit" value="Banco">  BANCO  </button>
             </form></td>
             <td><form method="POST" action="cadastrar/cadastro_agencia.php" autocomplete="off">
-                <button type="submit" value="Agencia">  Cadastrar nova agência  </button>
+                <button type="submit" value="Agencia">  AGÊNCIA  </button>
             </form></td>
             <td><form method="POST" action="cadastrar/cadastro_cliente.php" autocomplete="off">
-                <button type="submit" value="Clientes">  Cadastrar novo cliente  </button>
+                <button type="submit" value="Clientes">  CLIENTE  </button>
             </form></td>
             <td><form method="POST" action="cadastrar/cadastro_conta.php" autocomplete="off">
-                <button type="submit" value="Clientes">  Cadastrar nova conta  </button>
+                <button type="submit" value="Clientes">  CONTA  </button>
             </form></td>
         </tr>
     </table>
-    <br>
+    <h2>PESQUISA</h2>
     <table align="center">
         <tr>
             <td><form method="POST" action="pesquisar/pesquisa_banco.php" autocomplete="off">
-                <button type="submit" value="Pesquisa_Banco">  Pesquisar bancos  </button>
+                <button type="submit" value="Pesquisa_Banco">  BANCOS  </button>
             </form></td>
             <td><form method="POST" action="pesquisar/pesquisa_agencia.php" autocomplete="off">
-                <button type="submit" value="Pesquisa_Agencia">  Pesquisar agências  </button>
+                <button type="submit" value="Pesquisa_Agencia">  AGÊNCIAS  </button>
             </form></td>
             <td><form method="POST" action="pesquisar/pesquisa_cliente.php" autocomplete="off">
-                <button type="submit" value="Pesquisa_Cliente">  Pesquisar clientes  </button>
+                <button type="submit" value="Pesquisa_Cliente">  CLIENTES  </button>
             </form></td>
             <td><form method="POST" action="pesquisar/pesquisa_conta.php" autocomplete="off">
-                <button type="submit" value="Pesquisa_Conta">  Pesquisar contas  </button>
+                <button type="submit" value="Pesquisa_Conta">  CONTAS  </button>
             </form></td>
         </tr>
     </table>
     <h2>MOVIMENTO</h2>
     <table align="center">
         <tr>
-            <td><form method="POST" action="movimento/propria_conta.php" autocomplete="off">
-                <button type="submit" value="Propria_Conta">  Própria conta  </button>
-            </form></td>
-            <td><form method="POST" action="movimento/entre_contas.php" autocomplete="off">
-                <button type="submit" value="Entre_Contas">  Entre contas  </button>
+            <td><form method="POST" action="pesquisar/pesquisa_conta.php" autocomplete="off">
+                <button type="submit" value="Propria_Conta">  CONTAS  </button>
             </form></td>
         </tr>
     </table>
-    <br>
+    <h2>RELATÓRIO</h2>
+    <table align="center">
+        <tr>
+            <td><form method="POST" action="pesquisar/pesquisa_conta.php" autocomplete="off">
+                <button type="submit" value="Contas">  CONTAS  </button>
+            </form></td>
+            <td><form method="POST" action="relatorios/pesquisar_bancos.php" autocomplete="off">
+                <button type="submit" value="Bancos">  BANCOS  </button>
+            </form></td>
+            <td><form method="POST" action="relatorios/pesquisar_agencias.php" autocomplete="off">
+                <button type="submit" value="Agencias">  AGÊNCIAS  </button>
+            </form></td>
+            <td><form method="POST" action="relatorios/pesquisar_clientes.php" autocomplete="off">
+                <button type="submit" value="Clientes">  CLIENTES  </button>
+            </form></td>
+        </tr>
+    </table>
     <table align="center">
         <tr>
             <td><form method="POST" action="funcoes/sair.php">

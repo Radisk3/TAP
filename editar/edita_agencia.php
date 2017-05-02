@@ -50,7 +50,7 @@
 		echo '<b>CEP: </b> <input type="text" name="CEP" value = "'.$row['CEP'].'" placeholder="CEP da agência" pattern="[0-9]+$" maxlength="8" size =10 ><br>';
 		$ID_B=$row['ID_BANCO'];
 		#pesquisar todos os bancos e carregá-los
-		include('conexao.php');
+		include('../funcoes/conexao.php');
 		$sql = 'select id_banco, nome from cadastro_banco order by nome';
 		$conecta = new Conexao;
 		$consulta=$conecta->SQL_Query($sql);

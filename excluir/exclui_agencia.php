@@ -49,7 +49,7 @@
 		echo '<b>CEP: </b> <input type="text" name="CEP" value = "'.$row['CEP'].'" placeholder="CEP da agência" pattern="[0-9]+$" maxlength="8" size =10 readonly="true" ><br>';
 		$ID_B=$row['ID_BANCO'];
 		#pesquisar todos os bancos e carregá-los
-		include('conexao.php');
+		include('../funcoes/conexao.php');
 		$sql = 'select id_banco, nome from cadastro_banco order by nome';
 		$conecta = new Conexao;
 		$consulta=$conecta->SQL_Query($sql);
@@ -66,10 +66,35 @@
 		}
 		echo'</select>';
 		echo'</font>';
-		echo '<br>';
-		echo '<br>';
-		echo '<h3> Confirma a exclusão da agência '.$row['NOME'].'? </h3>';
-		echo '<button type="submit" value="Excluir">Excluir</button>';
+
+		$query = "select * ";
+		$query = $query . "from rel_cli_age ";
+		$query = $query . "where id_age = $IDAgencia" ;
+
+		if ($result = $mysqli->query($query)) {
+			$row = $result->fetch_assoc();
+			if($row['ID_AGE']){
+				echo '</form>';
+				echo '<h4> NÃO É PERMITIDO EXCLUIR UMA AGÊNCIA VINCULADA A UM CLIENTE! </h4>';
+				echo '<form method="POST" action="../pesquisar/pesquisa_agencia.php" autocomplete="off">';
+				echo '<button type="submit" value="Pesquisa_Agencia">  Pesquisar Agências  </button>';
+				echo '</form>';
+				echo '<form method="POST" action="../pesquisar/pesquisa_conta.php" autocomplete="off">';
+				echo '<button type="submit" value="Pesquisa_Conta">  Pesquisar contas  </button>';
+				echo '</form>';
+			}
+			else{
+				echo '<h4> Confirma a exclusão da agência? </h4>';
+				echo '<button type="submit" value="Excluir">Excluir</button>';
+				echo '</form>';
+			}
+		}
+		else{
+			echo '<h4> Confirma a exclusão da agência? </h4>';
+			echo '<button type="submit" value="Excluir">Excluir</button>';
+			echo '</form>';
+		}
+
 		echo '<br>';
 		echo '<form method="POST" action="../pesquisar/pesquisa_agencia.php" autocomplete="off">';
 		echo '<button type="submit" value="Voltar a pesquisa">Voltar a pesquisa</button>';

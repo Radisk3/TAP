@@ -15,23 +15,7 @@
 			Retornar("de indice da conta ");
 	}
 	else
-		Retornar("tipo de movimento ","S");
-
-	if (isset($_POST['Tipo']))
-	{
-		$Tipo=$_POST['Tipo'];
-		if($Tipo=="")
-			Retornar("tipo de movimento ");
-	}
-	else
 		Retornar("de indice da conta ","S");
-
-	if ($Tipo=='1')
-		$NomeTipo='Depósito';
-	else if ($Tipo=='2')
-		$NomeTipo="Saque";
-	else if ($Tipo=='3')
-		$NomeTipo="Transferência";
 
 	$mysqli = new mysqli("localhost", "root", "", "banco");
 
@@ -61,9 +45,11 @@
 		echo '<div class="principal">';
 		echo '<div class="meio">';
 		echo '<div class="esquerda">';
-		echo '<h3> Movimentação da conta  - '.$NomeTipo.' </h3>';
+		echo '<h3> Movimentação da conta  - Saque </h3>';
 		echo '<form method="POST" action="../salvar/salva_movimento.php" autocomplete="off">';
 		echo '<input type="text" hidden="true" name="ID_RCA" placeholder="Índice da conta"  value = '.$row['id_rca'].' required readonly="true" size=6 >';
+		echo '<input type="text" hidden="true" name="ID_Cliente" placeholder="Cliente da conta"  value = "'.$row['id_cli'].'" required readonly="true" size=6 >';
+		echo '<input type="text" hidden="true" name="Tipo" value = "2">';
 #		echo '<b>Tipo de movimento: </b> <input type="text" name="Tipo" value = "'.$NomeTipo.'" size =10 required readonly="true" ><br>';
 		echo '<font color="#00008b" size="2" font face="Arial" >';
 		echo '<b>Cliente: </b>';

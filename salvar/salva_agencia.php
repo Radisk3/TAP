@@ -51,6 +51,7 @@
 	}
 	else
 		Retornar("Banco","S");
+
     #CAMPOS OPCIONAIS
 	if (isset($_POST['Endereco'])){
 		$Endereco=$_POST['Endereco'];

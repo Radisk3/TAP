@@ -47,10 +47,35 @@
 			echo '<font size="1" color="red" >Informe somente números</font><br>';
 			echo '<b>CNPJ</b> <input type="text" name="CNPJ" placeholder="CNPJ do banco"  value = '.$row['CNPJ'].' pattern="[0-9]+$" maxlength="14" required readonly="true"><br>';
 			echo '</font>';
-			echo '<br>';
-			echo '<h3> Confirma a exclusão do banco '.$row['NOME'].'? </h3>';
-			echo '<button type="submit" value="Excluir">Excluir</button>';
-			echo '</form>';
+
+			$query = "select * ";
+			$query = $query . "from cadastro_agencia ";
+			$query = $query . "where id_banco = $IDBanco " ;
+
+			if ($result = $mysqli->query($query)) {
+				$row = $result->fetch_assoc();
+				if($row['ID_AGENCIA']){
+					echo '</form>';
+					echo '<h4> NÃO É PERMITIDO EXCLUIR UMA CONTA VINCULADA A UMA AGÊNCIA! </h4>';
+					echo '<form method="POST" action="../pesquisar/pesquisa_banco.php" autocomplete="off">';
+					echo '<button type="submit" value="Pesquisa_Banco">  Pesquisar bancos  </button>';
+					echo '</form>';
+					echo '<form method="POST" action="../pesquisar/pesquisa_agencia.php" autocomplete="off">';
+					echo '<button type="submit" value="Pesquisa_Agencia">  Pesquisar Agências  </button>';
+					echo '</form>';
+				}
+				else{
+					echo '<h3> Confirma a exclusão do banco '.$row['NOME'].'? </h3>';
+					echo '<button type="submit" value="Excluir">Excluir</button>';
+					echo '</form>';
+				}
+			}
+			else{
+				echo '<h3> Confirma a exclusão do banco '.$row['NOME'].'? </h3>';
+				echo '<button type="submit" value="Excluir">Excluir</button>';
+				echo '</form>';
+			}
+
 			echo '<br>';
 			echo '<form method="POST" action="../principal.php" autocomplete="off">';
 			echo '<button type="submit" value="Principal">Página Principal</button>';

@@ -29,7 +29,7 @@
 				<font size="1" color="red" >Informe somente números</font><br>
 				<b>CEP: </b> <input type="text" name="CEP" placeholder="CEP" pattern="[0-9]+$" maxlength="8" size =10 required ><br>
 				<font size="1" color="red" >Informe somente números</font><br>
-				<b>Data moradis: </b> <input type="text" name="Dia" placeholder="Dia" pattern="[0-9]+$" maxlength="2" required size =2 >
+				<b>Data moradia: </b> <input type="text" name="Dia" placeholder="Dia" pattern="[0-9]+$" maxlength="2" required size =2 >
 				<b>/</b> <input type="text" name="Mes" placeholder="Mês" pattern="[0-9]+$" maxlength="2" required size =2 >
 				<b>/</b> <input type="text" name="Ano" placeholder="Ano" pattern="[0-9]+$" maxlength="4" required size =4 >
 			</font>

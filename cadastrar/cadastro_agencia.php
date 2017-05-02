@@ -32,7 +32,7 @@
 				<b>CEP: </b> <input type="text" name="CEP" placeholder="CEP da agência" pattern="[0-9]+$" maxlength="8" size =10 ><br>
 				<b>Banco: </b><select class="form-control" name="ID_Banco">
 					<?php while($Valor = mysql_fetch_array($consulta)){
-						echo '<option value="$Valor["id_banco"]; " required >';
+						echo '<option value="'.$Valor["id_banco"].'" required >';
 							echo $Valor["nome"];
 						echo'</option>';
 					}?>
@@ -43,7 +43,10 @@
 			<button type="submit" value="Salvar">   Salvar   </button>
 		</form>
 		</div>
-			<br>
+		<br>
+		<form method="POST" action="../pesquisar/pesquisa_agencia.php" autocomplete="off">
+			<button type="submit" value="Pesquisa_Agencia">  Pesquisar Agências  </button>
+		</form>
 		<form method="POST" action="../principal.php" autocomplete="off">
 			<button type="submit" value="Principal">Página Principal</button>
 		</form>

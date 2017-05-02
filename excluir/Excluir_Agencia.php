@@ -24,7 +24,7 @@
 		echo "Falha de conexao: %s\n", mysqli_connect_error();
 		exit();
 	}
-	$sql='delete from cadastro_agencia where id_banco='.$ID_Agencia;
+	$sql='delete from cadastro_agencia where id_agencia='.$ID_Agencia;
 
 	if ($mysqli->query($sql) === TRUE) {
 		echo '<h3> Registro excluído com sucesso! </h3>';

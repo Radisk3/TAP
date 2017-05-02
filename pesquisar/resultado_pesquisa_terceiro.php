@@ -12,8 +12,17 @@
 <br>
 <div class="principal">
 	<div class="meio">
-	<h3> Pesquisa de Contas </h3>
+	<h3> Pesquisa destino da transferência </h3>
 	<?php
+		if (isset($_SESSION['ID_RCA']))
+		{
+			$ID_RCA=$_SESSION['ID_RCA'];
+			if($ID_RCA=="")
+				Retornar("de indice da conta ");
+		}
+		else
+			Retornar("de indice da conta ","S");
+
 		if (isset($_POST['Nome']))
 		{
 			$Nome=$_POST['Nome'];
@@ -44,6 +53,7 @@
 		$query = $query . "inner join cadastro_banco on (cadastro_banco.id_banco = cadastro_agencia.id_banco) ";
 		$Nome=strtolower($Nome);
 		$query = $query . "where rel_cli_age.excluido = 0 " ;
+		$query = $query . "and rel_cli_age.id_rca != $ID_RCA ";
 		if ($Nome!="todos")
 			$query = $query . "and cadastro_cliente.nome like '%$Nome%' " ;
 		$query = $query . "order by cadastro_cliente.nome asc";
@@ -51,40 +61,25 @@
 #		echo '<br>';
 		if ($result = $mysqli->query($query)) {
 			$table = '<body><center><table border="1"><tr>';
-			$table .= '<th>'.'Excluir'.'</th>';
-			$table .= '<th>'.'Saque'.'</th>';
-			$table .= '<th>'.'Depósito'.'</th>';
-			$table .= '<th>'.'Transferência'.'</th>';
+			$table .= '<th>'.'Selecionar'.'</th>';
 			$table .= '<th>'.'Cliente'.'</th>';
 			$table .= '<th>'.'Banco'.'</th>';
 			$table .= '<th>'.'Agência'.'</th>';
 			$table .= '<th>'.'Conta'.'</th>';
-			$table .= '<th>'.'Saldo'.'</th>';
+			#$table .= '<th>'.'Saldo'.'</th>';
 			$table .= '<tbody>';
 
 			while($row = $result->fetch_assoc()){
 				$table .= '<tr>';
-				#Excluir o cliente
-				$table .= '<td><form method="POST" action="../excluir/exclui_conta.php">
-					<input hidden value=' .$row['id_rca'].' name="ID_RCA">
-					<button type="submit" value="Excluir">Excluir</button></form></td>';
-				#Saque
-				$table .= '<td><form method="POST" action="../movimento/saque_conta.php">
-					<input hidden value=' .$row['id_rca'].' name="ID_RCA">
-					<button type="submit" value="Saque">Saque</button></form></td>';
-				#Depósito
-				$table .= '<td><form method="POST" action="../movimento/destino_deposito.php">
-					<input hidden value=' .$row['id_rca'].' name="ID_RCA">
-					<button type="submit" value="Deposito">Depósito</button></form></td>';
 				#Transferência
-				$table .= '<td><form method="POST" action="../pesquisar/pesquisa_favorecido.php">
+				$table .= '<td><form method="POST" action="../movimento/deposito_terceiro.php">
 					<input hidden value=' .$row['id_rca'].' name="ID_RCA">
-					<button type="submit" value="Transferencia">Transferencia</button></form></td>';
+					<button type="submit" value="Selecionar">Selecionar</button></form></td>';
 				$table .= '<td>'.$row['cliente'].' </td>';
 				$table .= '<td>'.$row['banco'].'</td>';
 				$table .= '<td>'.$row['agencia'].'</td>';
 				$table .= '<td align="center">'.$row['conta'].'</td>';
-				$table .= '<td align="right">'.number_format($row['saldo'],2,',','.').'</td>';
+			#	$table .= '<td align="right">'.number_format($row['saldo'],2,',','.').'</td>';
 				$table .= '</tr>';
 			}
 
@@ -103,6 +98,7 @@
 				echo 'Falha ao ler os dados do campo '. $Campo .'!';
 			echo "<br>";
 			echo "<br>";
+			$_SESSION['ID_RCA']='';
 			echo '<a href="../pesquisar/pesquisa_conta.php">Voltar a pesquisa</a>';
 			return;
 		}
