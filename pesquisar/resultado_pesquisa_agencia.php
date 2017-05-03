@@ -42,8 +42,9 @@
 		$query = $query . "from cadastro_agencia ";
 		$query = $query . "left join cadastro_banco on (cadastro_banco.id_banco = cadastro_agencia.id_banco) ";
 		$Nome=strtolower($Nome);
+		$query = $query . "where cadastro_agencia.excluido = 0 " ;
 		if ($Nome!="todos")
-			$query = $query . "where cadastro_agencia.nome like '%$Nome%' " ;
+			$query = $query . "and cadastro_agencia.nome like '%$Nome%' " ;
 		$query = $query . "order by cadastro_agencia.nome asc";
 
 		if ($result = $mysqli->query($query)) {

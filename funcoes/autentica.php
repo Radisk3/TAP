@@ -74,7 +74,8 @@
 		session_start();
 		$_SESSION['NomeU'] = $NomeU;
 		$_SESSION['IDU'] = $IDU;
-		header('Location:../principal.php');
+		#header('Location:../principal.php');
+		header('Location:../funcoes/remove_zerada.php');
 	}
 	else
 	{

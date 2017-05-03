@@ -38,7 +38,7 @@
 		$query = $query . "cadastro_agencia.ESTADO ";
 		$query = $query . "from cadastro_agencia ";
 		$query = $query . "left join cadastro_banco on (cadastro_banco.id_banco = cadastro_agencia.id_banco) ";
-		$query = $query . "where cadastro_agencia.id_agencia > 0 ";
+		$query = $query . "where cadastro_agencia.excluido = 0 " ;
 		$Nome=strtolower($Nome);
 		if ($Nome!="")
 			if ($Nome!="todos")

@@ -141,7 +141,7 @@
 			echo '<br>';
 		}
 
-		echo '<button type="submit" value="Salvar">  Salvar  </button>';
+		echo '<button type="submit" value="Salvar">  CONCLUIR  </button>';
 		echo'</font>';
 		echo'</form>';
 		echo '<br>';

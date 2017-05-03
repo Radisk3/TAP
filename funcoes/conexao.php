@@ -20,19 +20,15 @@ class Conexao {
         $this->link = @mysql_connect($this->host,$this->user,$this->senha);
         // Conectar ao Banco de Dados
         if(!$this->link){
-            // Caso ocorra um erro, exibe uma mensagem com o erro
             print "Ocorreu um Erro na conexão MySQL:";
             print "<b>".mysql_error()."</b>";
             die();
         }elseif(!mysql_select_db($this->dbase,$this->link)){
-            // Seleciona o banco após a conexão
-            // Caso ocorra um erro, exibe uma mensagem com o erro
             print "Ocorreu um Erro em selecionar o Banco:";
             print "<b>".mysql_error()."</b>";
             die();
         }
     }
-
 
     // Cria a função para query no Banco de Dados
     function SQL_Query($query){

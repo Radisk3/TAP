@@ -44,7 +44,6 @@
 		echo '</font>';
 		echo '<br>';
 		echo '<h3> Confirma a exclusão da conta '.$row['CONTA'].'? </h3>';
-		echo '</form>';
 		if($row['SALDO']==0)
 			echo '<button type="submit" value="Excluir">Excluir</button>';
 		else{
@@ -53,6 +52,7 @@
 			echo '<button type="submit" value="Pesquisa_Conta">  Pesquisar contas  </button>';
 			echo '</form>';
 		}
+		echo '</form>';
 		echo '<br>';
 		echo '<form method="POST" action="../principal.php" autocomplete="off">';
 		echo '<button type="submit" value="Principal">Página Principal</button>';

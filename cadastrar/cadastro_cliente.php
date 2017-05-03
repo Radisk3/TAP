@@ -21,8 +21,8 @@
 				<b>CPF: </b> <input type="text" name="CPF" placeholder="CPF" pattern="[0-9]+$" maxlength="10" size =14 required><br>
 				<b>RG: </b> <input type="text" name="RG" placeholder="RG" pattern="[0-9]+$" maxlength="10" size =12 required><br>
 				<b>Rua: </b> <input type="text" name="Rua" placeholder="Nome da rua" maxlength="100" size =52 required ><br>
-				<b>Numero: </b> <input type="text" name="Numero" placeholder="Número" maxlength="100" size =50 ><br>
-				<b>Complemento: </b> <input type="text" name="Complemento" placeholder="Complemento" maxlength="100" size =50 ><br>
+				<b>Numero: </b> <input type="text" name="Numero" placeholder="Número" maxlength="100" size =50 required><br>
+				<b>Complemento: </b> <input type="text" name="Complemento" placeholder="Complemento" maxlength="100" size =50 required><br>
 				<b>Telefone: </b> <input type="tel" name="Telefone" placeholder="Telefone" maxlength="14" size =50 required ><br>
 				<b>Cidade: </b> <input type="text" name="Cidade" placeholder="Cidade" maxlength="60" size =50 required ><br>
 				<b>Estado: </b> <input type="text" name="Estado" placeholder="Estado" maxlength="2" size =3 required align="center"><br>

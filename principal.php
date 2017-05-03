@@ -57,7 +57,7 @@
     <h2>RELATÓRIO</h2>
     <table align="center">
         <tr>
-            <td><form method="POST" action="pesquisar/pesquisa_conta.php" autocomplete="off">
+            <td><form method="POST" action="relatorios/pesquisar_contas.php" autocomplete="off">
                 <button type="submit" value="Contas">  CONTAS  </button>
             </form></td>
             <td><form method="POST" action="relatorios/pesquisar_bancos.php" autocomplete="off">
@@ -68,6 +68,16 @@
             </form></td>
             <td><form method="POST" action="relatorios/pesquisar_clientes.php" autocomplete="off">
                 <button type="submit" value="Clientes">  CLIENTES  </button>
+            </form></td>
+        </tr>
+    </table>
+    <table align="center">
+        <tr>
+            <td><form method="POST" action="relatorios/pesquisar_clientes_excluidos.php" autocomplete="off">
+                <button type="submit" value="Clientes">  CLIENTES EXCLUIDOS  </button>
+            </form></td>
+            <td><form method="POST" action="relatorios/pesquisar_contas_excluidas.php" autocomplete="off">
+                <button type="submit" value="Clientes">  CONTAS EXCLUIDAS  </button>
             </form></td>
         </tr>
     </table>

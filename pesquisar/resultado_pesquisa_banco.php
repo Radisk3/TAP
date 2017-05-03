@@ -33,8 +33,9 @@
 		$query = "select * ";
 		$query = $query . "from cadastro_banco ";
 		$Nome=strtolower($Nome);
+		$query = $query . "where cadastro_banco.excluido = 0 " ;
 		if ($Nome!="todos")
-			$query = $query . "where nome like '%$Nome%' " ;
+			$query = $query . "and nome like '%$Nome%' " ;
 		$query = $query . "order by nome asc";
 
 		if ($result = $mysqli->query($query)) {
