@@ -84,9 +84,10 @@
 		echo '<font color="#8b0000" size="2" font face="Arial" >';
 		echo '<b>'.$Dts.'</b><br>';
 		echo '<font color="#00008b" size="2" font face="Arial" >';
+		echo '<input type="text" name="Saldo" VALUE="'.$row['saldo'].'" hidden="true" readonly="true">';
 		echo '<b>Valor: </b> <input type="number" name="Valor" placeholder="Valor R$" step="any" maxlength="10" size =10 required><br>';
 		echo '<br>';
-		echo '<button type="submit" value="Salvar">  Salvar  </button>';
+		echo '<button type="submit" value="Salvar">  DEPOSITAR  </button>';
 		echo'</font>';
 		echo'</form>';
 		echo '<br>';

@@ -96,6 +96,9 @@
 				#echo $sql.' - '.$ID_Agencia .' - '.$Conta.' - ';
 				echo '<b>Conta: </b> <input type="number" name="Conta" value="'.$Conta.'" placeholder="Número conta" pattern="[0-9]+$" maxlength="10" size =10 required readonly="true"><br>';
 				mysqli_close($mysqli);
+				echo '<b>Tipo de conta: </b> <br>
+				<input type="radio" name="Tipo_Conta" value="0" required checked > <b>Corrente</b> <br>
+				<input type="radio" name="Tipo_Conta" value="1" > <b>Poupança </b>  <br>';
 				?>
 				<font size="1" color="red" >Informe o saldo inicial</font><br>
 				<b>Saldo: </b> <input type="number" name="Saldo" placeholder="Saldo inicial" step="any" maxlength="10" size =10 required><br>

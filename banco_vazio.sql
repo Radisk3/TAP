@@ -1,3 +1,21 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 19-Jan-2017 às 10:36
+-- Versão do servidor: 10.1.13-MariaDB
+-- PHP Version: 5.6.21
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Database: `banco`
 --
@@ -83,6 +101,7 @@ CREATE TABLE `hist_mov` (
   `ID_HM` int(11) NOT NULL,
   `ID_RCA` int(11) NOT NULL,
   `VALOR` double NOT NULL DEFAULT '0',
+  `SALDO` double NOT NULL,
   `TIPO` smallint(6) NOT NULL DEFAULT '0' COMMENT '0=abertura,1=deposito,2=saque,3=deposito por transferencia,4=saque por transferencia',
   `DATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ID_CLIENTE_ORIGEM` int(11) NOT NULL,
@@ -100,6 +119,7 @@ CREATE TABLE `rel_cli_age` (
   `ID_CLI` int(11) NOT NULL,
   `ID_AGE` int(11) NOT NULL,
   `CONTA` int(11) NOT NULL,
+  `TIPO_CONTA` smallint(6) NOT NULL COMMENT '0=CC,1=Poupanca',
   `SALDO` double NOT NULL DEFAULT '0',
   `EXCLUIDO` tinyint(4) NOT NULL DEFAULT '0',
   `CRIACAO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -168,7 +188,7 @@ ALTER TABLE `cadastro_banco`
 -- AUTO_INCREMENT for table `cadastro_cliente`
 --
 ALTER TABLE `cadastro_cliente`
-  MODIFY `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `cadastro_usuario`
 --
@@ -178,12 +198,12 @@ ALTER TABLE `cadastro_usuario`
 -- AUTO_INCREMENT for table `hist_mov`
 --
 ALTER TABLE `hist_mov`
-  MODIFY `ID_HM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `ID_HM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT for table `rel_cli_age`
 --
 ALTER TABLE `rel_cli_age`
-  MODIFY `ID_RCA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_RCA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

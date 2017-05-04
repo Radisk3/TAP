@@ -83,6 +83,7 @@
 		echo '<font color="#00008b" size="2" font face="Arial" >';
 		echo '<b>Saldo: </b>';
 		echo '<font color="#8b0000" size="2" font face="Arial" >';
+		echo '<input type="text" name="SaldoD" VALUE="'.$row['saldo'].'" hidden="true" readonly="true>';
 		echo '<b>'.number_format($row['saldo'],2,',','.').'</b><br>';
 
 		echo '<br>';
@@ -141,6 +142,7 @@
 			echo '<font color="#8b0000" size="2" font face="Arial" >';
 			echo '<b>'.$Dts.'</b><br>';
 			echo '<font color="#00008b" size="2" font face="Arial" >';
+			echo '<input type="text" name="SaldoF" VALUE="'.$row['saldo'].'" hidden="true" readonly="true>';
 			echo '<b>Valor: </b> <input type="number" name="Valor" placeholder="Valor R$" step="any" maxlength="10" size =10 required><br>';
 			echo '<br>';
 		}

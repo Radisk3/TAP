@@ -13,6 +13,7 @@
 <div class="principal">
 	<div class="meio">
 	<h3> Cadastro de bancos </h3>
+		<div class="esquerda">
 		<form method="POST" action="../salvar/salva_banco.php" autocomplete="off">
 			<font color="#00008b" size="2" font face="Arial" >
 				<font size="1" color="red" >Informe somente números</font><br>
@@ -26,12 +27,14 @@
 			<button type="submit" value="Salvar">Cadastrar</button>
 		</form>
 		<br>
+		</div>
 		<form method="POST" action="../pesquisar/pesquisa_banco.php" autocomplete="off">
 			<button type="submit" value="Pesquisa_Banco">  Pesquisar bancos  </button>
 		</form>
 		<form method="POST" action="../principal.php" autocomplete="off">
 			<button type="submit" value="Principal">Página Principal</button>
 		</form>
+
 	</div>
 </div>
 	<a href="../funcoes/sair.php">Sair</a>

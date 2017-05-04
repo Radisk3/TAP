@@ -75,6 +75,16 @@
     </table>
     <table align="center">
         <tr>
+            <td><form method="POST" action="relatorios/pesquisar_saldos.php" autocomplete="off">
+                <button type="submit" value="Saldos">  SALDOS DAS CONTAS  </button>
+            </form></td>
+            <td><form method="POST" action="relatorios/pesquisar_movimentos.php" autocomplete="off">
+                <button type="submit" value="Movimentos">  MOVIMENTO DAS CONTAS  </button>
+            </form></td>
+        </tr>
+    </table>
+    <table align="center">
+        <tr>
             <td><form method="POST" action="relatorios/pesquisar_clientes_excluidos.php" autocomplete="off">
                 <button type="submit" value="Clientes">  CLIENTES EXCLUIDOS  </button>
             </form></td>

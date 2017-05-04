@@ -53,6 +53,15 @@
 	else
 		Retornar("Conta","S");
 
+	if (isset($_POST['Tipo_Conta'])){
+		$Tipo_Conta=$_POST['Tipo_Conta'];
+		if($Tipo_Conta=="")
+			Retornar("Tipo_Conta");
+		$Tipo_Conta="'".$Tipo_Conta."'";
+	}
+	else
+		Retornar("Tipo_Conta","S");
+
 #CAMPOS OPCIONAIS
 	if (isset($_POST['Saldo'])){
 		$Saldo=$_POST['Saldo'];
@@ -70,8 +79,8 @@
 	if ($Tipo=='1')
 	{
 		#GRAVA NA TABELA CONTA
-		$sql = "insert into rel_cli_age (id_age, id_cli, conta, saldo) 
-			values ($ID_Agencia, $ID_Cliente, $Conta, $Saldo)";
+		$sql = "insert into rel_cli_age (id_age, id_cli, conta, tipo_conta, saldo) 
+			values ($ID_Agencia, $ID_Cliente, $Conta, $Tipo_Conta, $Saldo)";
 		$result=$conecta->SQL_Query($sql);
 
 		#GRAVA NO HISTORICO
@@ -98,6 +107,7 @@
 			id_age = $ID_Agencia,  
 			id_cli = $ID_Cliente,
 		  	conta = $Conta,
+		  	Tipo_Conta=$Tipo_Conta,
 			saldo = $Saldo  
 			where id_rca = $ID";
 		#echo $sql;

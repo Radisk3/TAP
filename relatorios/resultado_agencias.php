@@ -21,7 +21,7 @@
 			$Banco=$_POST['Banco'];
 
 		if($Nome=="" && $Banco=="")
-			Retornar("Nome ou Banco");
+			Retornar("Agência ou Banco");
 
 		$mysqli = new mysqli("localhost", "root", "", "banco");
 
@@ -40,6 +40,7 @@
 		$query = $query . "left join cadastro_banco on (cadastro_banco.id_banco = cadastro_agencia.id_banco) ";
 		$query = $query . "where cadastro_agencia.excluido = 0 " ;
 		$Nome=strtolower($Nome);
+		$Banco=strtolower($Banco);
 		if ($Nome!="")
 			if ($Nome!="todos")
 				$query = $query . "and cadastro_agencia.nome like '%$Nome%' " ;

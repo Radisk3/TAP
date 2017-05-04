@@ -40,23 +40,34 @@
 	else
 		Retornar("Tipo","S");
 
+	if (isset($_POST['Saldo'])){
+		$Saldo=$_POST['Saldo'];
+		if($Saldo=="")
+			Retornar("Saldo Favorecido");
+	}
+	else
+		Retornar("Saldo Favorecido","S");
+
 	$Valor=str_replace("-","",$Valor);
 	include("../funcoes/conexao.php");
 	$conecta = new Conexao;
 	#0=abertura, 1=deposito, 2=saque, 3=deposito por transferencia, 4=saque por transferencia
-	$sql = "insert into hist_mov (id_rca, valor, id_cliente_origem, tipo) 
-				values ($ID_RCA, $Valor, $ID_Cliente, $Tipo)";
-	$result=$conecta->SQL_Query($sql);
 
 	if ($Tipo=='1')
 	{
 		$sql = 'update rel_cli_age set saldo = saldo+'.$Valor.' where id_rca='.$ID_RCA;
+		$Saldo=$Saldo+$Valor;
 		echo "<h2>Depósito realizado com sucesso!</h2>";
 	}
 	elseif ($Tipo=='2') {
 		$sql = 'update rel_cli_age set saldo = saldo-'.$Valor.' where id_rca='.$ID_RCA;
+		$Saldo=$Saldo-$Valor;
 		echo "<h2>Saque realizado com sucesso!</h2>";
 	}
+	$result=$conecta->SQL_Query($sql);
+
+	$sql = "insert into hist_mov (id_rca, valor, saldo, id_cliente_origem, tipo) 
+					values ($ID_RCA, $Valor, $Saldo, $ID_Cliente, $Tipo)";
 	$result=$conecta->SQL_Query($sql);
 
 	#	session_start();

@@ -20,7 +20,7 @@
     session_start();
     $_SESSION['ID_RCA'] = $ID_RCA;
 
-if ($Destino=="Propria")
+    if ($Destino=="Propria")
         header('Location:../movimento/propria_conta.php');
     else
         header('Location:../pesquisar/pesquisa_terceiro.php');

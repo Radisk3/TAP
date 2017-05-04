@@ -80,6 +80,7 @@
 		echo '<b>Banco: </b>';
 		echo '<font color="#8b0000" size="2" font face="Arial" >';
 		echo '<b>'.$row['banco'].'</b><br>';
+		echo '<input type="text" name="Saldo" VALUE="'.$row['saldo'].'" hidden="true" readonly="true">';
 
 		echo '<br>';
 		echo '<font color="#dc143c" size="3" font face="Arial" >';

@@ -41,6 +41,22 @@
 	else
 		Retornar("Valor","S");
 
+	if (isset($_POST['SaldoD'])){
+		$SaldoD=$_POST['SaldoD'];
+		if($SaldoD=="")
+			Retornar("Saldo Depositante");
+	}
+	else
+		Retornar("Saldo Depositante","S");
+
+	if (isset($_POST['SaldoF'])){
+		$SaldoF=$_POST['SaldoF'];
+		if($SaldoF=="")
+			Retornar("Saldo Favorecido");
+	}
+	else
+		Retornar("Saldo Favorecido","S");
+
 	if (isset($_POST['Tipo'])){
 		$Tipo=$_POST['Tipo'];
 		if($Tipo=="")
@@ -53,12 +69,12 @@
 	include("../funcoes/conexao.php");
 	$conecta = new Conexao;
 	#0=abertura, 1=deposito, 2=saque, 3=deposito por transferencia, 4=saque por transferencia
-	$sql = "insert into hist_mov (id_rca, valor, id_cliente_origem, tipo) 
-				values ($ID_RCAF, $Valor, $ID_Cliente, $Tipo)";
+	$sql = "insert into hist_mov (id_rca, valor, saldo, id_cliente_origem, tipo) 
+				values ($ID_RCAF, $Valor, $SaldoF+$Valor, $ID_Cliente, $Tipo)";
 	$result=$conecta->SQL_Query($sql);
 
-	$sql = "insert into hist_mov (id_rca, valor, id_cliente_origem, tipo) 
-					values ($ID_RCAD, $Valor, $ID_Cliente, 4)";
+	$sql = "insert into hist_mov (id_rca, valor, saldo, id_cliente_origem, tipo) 
+					values ($ID_RCAD, $Valor, $SaldoD-$Valor, $ID_Cliente, 4)";
 	$result=$conecta->SQL_Query($sql);
 
 	$sql = 'update rel_cli_age set saldo = saldo+'.$Valor.' where id_rca='.$ID_RCAF;
