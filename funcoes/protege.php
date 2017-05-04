@@ -6,16 +6,16 @@
 	</head>
 <body>
 <?php
-	session_start();	
+	session_start();
 	if(isset($_SESSION['IDU'])==false)
 	{
-		header ("Location: ../funcoes/invalido.html");
+		header('Location:funcoes/invalido.html');
 		return;
 	}
 	else{
 		if ($_SESSION['IDU'] == null || $_SESSION['IDU'] == "")
 		{
-			header ("Location: ../funcoes/invalido.html");
+			header('Location:funcoes/invalido.html');
 			return;
 		}
 	}
