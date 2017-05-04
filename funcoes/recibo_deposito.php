@@ -36,6 +36,9 @@
 	else
 		Retornar("Valor","S");
 
+	echo "<html xlms='http://www.w3.org/1999/xhtml' lang='pt-br' xml:lang='pt-br'>";
+	echo '<meta http-equiv="Content-Type" content="text/html" style="font-family:consolas,"courier new",courier,monospace;font-size:13.3333px;white-space:nowrap;color:rgb(51,153,51)">';
+
 	$mysqli = new mysqli("localhost", "root", "", "banco");
 
 	if (mysqli_connect_errno()) {
@@ -59,16 +62,12 @@
 	$TituloR='';
 	$TextoR='';
 	if ($result = $mysqli->query($query)) {
-
 		$row = $result->fetch_assoc();
 		$Dts=date("d/m/Y");
 		$Hora=date("H:i:s");
-		#var_dump($row);
 
-		echo '<font color="#00008b" size="4" font face="Courier New" >';
-		$TituloR='Recibo de Deposito';
-		echo '<b>'.$TituloR.'</b><br>';
-		echo '<font color="#00008b" size="2" font face="Courier New" >';
+		$TituloR='Recibo de Depósito';
+		$TituloR=mb_convert_encoding($TituloR,'UTF-8');
 		$TextoR=$Dts.' - '.$Hora.''.'<br>';
 		$TextoR=$TextoR.'================================================'.'<br>';
 		$TextoR=$TextoR.'------------------ FAVORECIDO ------------------'.'<br>';
@@ -95,13 +94,19 @@
 		$TextoR=$TextoR.'================================================'.'<br>';
 		$TextoR=$TextoR.'Valor R$: '.number_format($Valor,2,',','.').''.'<br>';
 		$TextoR=$TextoR.'================================================'.'<br>';
-		$TextoR=utf8_encode($TextoR);
+		$TextoR=mb_convert_encoding($TextoR,'UTF-8');
+		echo '<font color="#00008b" size="4" font face="Courier New" >';
+		echo '<b>'.$TituloR.'</b><br>';
 		echo '<font color="#00008b" size="2" font face="Courier New" >';
-		echo '<b>'. utf8_encode($TextoR) .'</b><br>';
+		echo '<font color="#00008b" size="2" font face="Courier New" >';
+		echo '<b>'. $TextoR .'<b><br>';
 	}
 	$_SESSION['ID_RCA_Op'] = '';
 	$_SESSION['ID_Cliente_Op'] = '';
 	$_SESSION['Valor_Deposito'] = '';
+	$Dts=date("Ymd");
+	$Hora=date("His");
+	$_SESSION['Data_Hora'] = $Dts.'_'.$Hora;
 	$_SESSION['TituloPDF'] = $TituloR;
 	$_SESSION['Texto_Recibo'] = $TextoR;
 	echo '<form method="POST" action="../funcoes/recibo_pdf.php" target="_blank" autocomplete="off">';
@@ -127,9 +132,11 @@
 		$_SESSION['ID_RCA_Op'] = '';
 		$_SESSION['ID_Cliente_Op'] = '';
 		$_SESSION['Valor_Deposito'] = '';
+		$_SESSION['Data_Hora'] = '';
 		$_SESSION['TituloPDF'] = '';
 		$_SESSION['Texto_Recibo'] = '';
 	}
+
 	echo'<form method="POST" action="../pesquisar/pesquisa_conta.php" autocomplete="off">';
 	echo'<button type="submit" value="Voltar">Voltar a pesquisa</button>';
 	echo'</form>';

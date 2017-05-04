@@ -55,35 +55,28 @@
 	$query = $query . "inner join cadastro_banco on (cadastro_banco.id_banco = cadastro_agencia.id_banco) ";
 	$query = $query . "where id_rca = $ID_RCA_0 " ;
 
+	$TituloR='';
+	$TextoR='';
 	if ($result = $mysqli->query($query)) {
-
 		$row = $result->fetch_assoc();
 		$Dts=date("d/m/Y");
 		$Hora=date("H:i:s");
-		#var_dump($row);
-		echo '<font color="#00008b" size="4" font face="Courier New" >';
-		echo '<b>Tranferência entre contas</b><br>';
-		echo '<font color="#00008b" size="2" font face="Courier New" >';
-		echo '<b>'.$Dts.'</b> - <b>'.$Hora.'</b><br>';
-		echo '<b>╔====================================================╗</b><br>';
-		echo '<b>║-------------------- DEPOSITANTE -------------------║ </b><br>';
-		echo '<b>╚====================================================╝</b><br>';
-		echo '<b>Cliente: </b>';
-		echo '<b>'.$row['cliente'].'</b> <br>';
-		echo '<b>RG: </b>';
-		echo '<b>'.$row['rg'].'</b> <br>';
-		echo '<b>Banco: </b>';
-		echo '<b>'.$row['codigo_banco'].'</b> - ';
-		echo '<b>'.$row['banco'].'</b> <br>';
-		echo '<b>Agência: </b>';
-		echo '<b>'.$row['numero_agencia'].'</b> - ';
-		echo '<b>'.$row['agencia'].'</b> <br>';
-		echo '<b>Conta: </b>';
-		echo '<b>'.$row['conta'].'</b> <br>';
 
-		echo '<b>╔====================================================╗</b><br>';
-		echo '<b>║--------------------- FAVORECIDO -------------------║ </b><br>';
-		echo '<b>╚====================================================╝</b><br>';
+		$TituloR='Tranferência entre contas';
+		$TituloR=mb_convert_encoding($TituloR,'UTF-8');
+		$TextoR=$Dts.' - '.$Hora.''.'<br>';
+		$TextoR=$TextoR.'================================================'.'<br>';
+		$TextoR=$TextoR.'------------------ DEPOSITANTE -----------------'.'<br>';
+		$TextoR=$TextoR.'================================================'.'<br>';
+		$TextoR=$TextoR.'Cliente: '.$row['cliente'].''.'<br>';
+		$TextoR=$TextoR.'RG: '.$row['rg'].''.'<br>';
+		$TextoR=$TextoR.'Banco: '.$row['codigo_banco'].' - '.$row['banco'].''.'<br>';
+		$TextoR=$TextoR.'Agência: '.$row['numero_agencia'].' - '.$row['agencia'].''.'<br>';
+		$TextoR=$TextoR.'Conta: '.$row['conta'].''.'<br>';
+		$TextoR=$TextoR.''.'<br>';
+		$TextoR=$TextoR.'================================================'.'<br>';
+		$TextoR=$TextoR.'------------------ FAVORECIDO ------------------'.'<br>';
+		$TextoR=$TextoR.'================================================'.'<br>';
 
 		$query = "select rel_cli_age.conta as conta, ";
 		$query = $query . "cadastro_cliente.nome as cliente, ";
@@ -98,33 +91,35 @@
 		$query = $query . "inner join cadastro_banco on (cadastro_banco.id_banco = cadastro_agencia.id_banco) ";
 		$query = $query . "where id_rca = $ID_RCA_F " ;
 		if ($result = $mysqli->query($query)) {
-
 			$row = $result->fetch_assoc();
-			echo '<b>Favorecido: </b>';
-			echo '<b>' . $row['cliente'] . '</b> <br>';
-			echo '<b>RG: </b>';
-			echo '<b>'.$row['rg'].'</b> <br>';
-			echo '<b>Banco: </b>';
-			echo '<b>'.$row['codigo_banco'].'</b> - ';
-			echo '<b>'.$row['banco'].'</b> <br>';
-			echo '<b>Agência: </b>';
-			echo '<b>'.$row['numero_agencia'].'</b> - ';
-			echo '<b>'.$row['agencia'].'</b> <br>';
-			echo '<b>Conta: </b>';
-			echo '<b>'.$row['conta'].'</b> <br>';
-			echo '<b>======================================================</b><br>';
-			echo '<font color="#00008b" size="3" font face="Courier New" >';
-			echo '<b>Valor R$: </b>';
-			echo '<b>'.number_format($Valor,2,',','.').'</b> <br>';
-			echo '<font color="#00008b" size="2" font face="Courier New" >';
-			echo '<b>======================================================</b><br>';
-			echo '<br>';
-			echo '<br>';
+			$TextoR=$TextoR.'Favorecido: '. $row['cliente'] .''.'<br>';
+			$TextoR=$TextoR.'RG: '.$row['rg'].''.'<br>';
+			$TextoR=$TextoR.'Banco: '.$row['codigo_banco'].' - '.$row['banco'].''.'<br>';
+			$TextoR=$TextoR.'Agência: '.$row['numero_agencia'].' - '.$row['agencia'].''.'<br>';
+			$TextoR=$TextoR.'Conta: '.$row['conta'].''.'<br>';
 		}
+		$TextoR=$TextoR.'================================================'.'<br>';
+		$TextoR=$TextoR.'Valor R$: '.number_format($Valor,2,',','.').''.'<br>';
+		$TextoR=$TextoR.'================================================'.'<br>';
+		$TextoR=mb_convert_encoding($TextoR,'UTF-8');
+		echo '<font color="#00008b" size="4" font face="Courier New" >';
+		echo '<b>'.$TituloR.'</b><br>';
+		echo '<font color="#00008b" size="2" font face="Courier New" >';
+		echo '<font color="#00008b" size="2" font face="Courier New" >';
+		echo '<b>'. $TextoR .'<b><br>';
 	}
 	$_SESSION['ID_RCA_O'] = '';
 	$_SESSION['ID_RCA_F'] = '';
 	$_SESSION['Valor_Deposito'] = '';
+
+	$Dts=date("Ymd");
+	$Hora=date("His");
+	$_SESSION['Data_Hora'] = $Dts.'_'.$Hora;
+	$_SESSION['TituloPDF'] = $TituloR;
+	$_SESSION['Texto_Recibo'] = $TextoR;
+	echo '<form method="POST" action="../funcoes/recibo_pdf.php" target="_blank" autocomplete="off">';
+	echo '<button type="submit" value="Recibo">Recibo em PDF</button>';
+	echo '</form>';
 
 	$mysqli->close();
 
@@ -136,12 +131,18 @@
 		else
 			echo 'Falha ao ler os dados do campo '. $Campo .'!';
 		echo "<br>";
-		$_SESSION['ID_RCA_O'] = '';
-		$_SESSION['ID_RCA_F'] = '';
-		$_SESSION['Valor_Deposito'] = '';
+		Limpa_Variaveis();
 		echo "<br>";
 		echo '<a href="../principal.php">Página principal</a>';
 		return;
+	}
+	function Limpa_Variaveis(){
+		$_SESSION['ID_RCA_O'] = '';
+		$_SESSION['ID_RCA_F'] = '';
+		$_SESSION['Valor_Deposito'] = '';
+		$_SESSION['Data_Hora'] = '';
+		$_SESSION['TituloPDF'] = '';
+		$_SESSION['Texto_Recibo'] = '';
 	}
 ?>
 	<form method="POST" action="../pesquisar/pesquisa_conta.php" autocomplete="off">

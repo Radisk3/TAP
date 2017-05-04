@@ -5,14 +5,16 @@
     <link rel="stylesheet" type="text/css" href="formulario.css"/>
 </head>
 <body>
+<div class="principal">
+    <div class="meio">
     <?php
         include_once("funcoes/protege.php");
         $IDU=$_SESSION['IDU'];
         $NOME=$_SESSION['NomeU'];
-        echo "<h2> Olá " . $NOME . " este é o seu painel do sistema! </h2>";
+        echo "<h1> Olá " . $NOME . " este é o seu painel do sistema! </h1>";
     ?>
-    <h2>Escolha uma das opções abaixo</h2>
-    <h2>CADASTRO</h2>
+    <h1>Escolha uma das opções abaixo</h1>
+    <h1>CADASTRO</h1>
     <table align="center">
         <tr>
             <td><form method="POST" action="cadastrar/cadastro_banco.php" autocomplete="off">
@@ -29,7 +31,7 @@
             </form></td>
         </tr>
     </table>
-    <h2>PESQUISA</h2>
+    <h1>PESQUISA</h1>
     <table align="center">
         <tr>
             <td><form method="POST" action="pesquisar/pesquisa_banco.php" autocomplete="off">
@@ -46,7 +48,7 @@
             </form></td>
         </tr>
     </table>
-    <h2>MOVIMENTO</h2>
+    <h1>MOVIMENTO</h1>
     <table align="center">
         <tr>
             <td><form method="POST" action="pesquisar/pesquisa_conta.php" autocomplete="off">
@@ -54,7 +56,7 @@
             </form></td>
         </tr>
     </table>
-    <h2>RELATÓRIO</h2>
+    <h1>RELATÓRIO</h1>
     <table align="center">
         <tr>
             <td><form method="POST" action="relatorios/pesquisar_contas.php" autocomplete="off">
@@ -84,9 +86,11 @@
     <table align="center">
         <tr>
             <td><form method="POST" action="funcoes/sair.php">
-                    <button type="submit" value="Sair">     Sair     </button>
+                <button type="submit" value="Sair">     Sair     </button>
             </form></td>
         </tr>
     </table>
+    </div>
+</div>
 </body>
 </html>

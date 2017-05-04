@@ -40,8 +40,6 @@
 
 		if ($result = $mysqli->query($query)) {
 			$table = '<body><center><table border="1"><tr>';
-			$table .= '<th>'.'Excluir'.'</th>';
-			$table .= '<th>'.'Editar'.'</th>';
 			$table .= '<th>'.'Nome'.'</th>';
 			$table .= '<th>'.'CPF'.'</th>';
 			$table .= '<th>'.'RG'.'</th>';
@@ -57,14 +55,6 @@
 
 			while($row = $result->fetch_assoc()){
 				$table .= '<tr>';
-				#Excluir o cliente
-				$table .= '<td><form method="POST" action="../excluir/exclui_cliente.php">
-					<input hidden value=' .$row['ID_CLIENTE'].' name="ID_CLIENTE">
-					<button type="submit" value="Excluir">Excluir</button></form></td>';
-				#Editar o cliente
-				$table .= '<td><form method="POST" action="../editar/edita_cliente.php">
-					<input hidden value=' .$row['ID_CLIENTE'].' name="ID_CLIENTE">
-					<button type="submit" value="Editar">Editar</button></form></td>';
 				$table .= '<td>'.$row['NOME'].'</td>';
 				$table .= '<td>'.$row['CPF'].'</td>';
 				$table .= '<td>'.$row['RG'].'</td>';

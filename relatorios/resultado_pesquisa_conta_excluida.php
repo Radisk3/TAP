@@ -35,6 +35,9 @@
 		$query = $query . "rel_cli_age.saldo, ";
 		$query = $query . "rel_cli_age.id_age, ";
 		$query = $query . "rel_cli_age.id_cli, ";
+		$query = $query . "rel_cli_age.criacao, ";
+		$query = $query . "rel_cli_age.remocao, ";
+		$query = $query . "REPLACE(REPLACE(rel_cli_age.motivo,1,'Automático'),2,'Manual') as motivo, ";
 		$query = $query . "cadastro_cliente.nome as cliente, ";
 		$query = $query . "cadastro_agencia.nome as agencia, ";
 		$query = $query . "cadastro_banco.nome as banco ";
@@ -56,6 +59,9 @@
 			$table .= '<th>'.'Agência'.'</th>';
 			$table .= '<th>'.'Conta'.'</th>';
 			$table .= '<th>'.'Saldo'.'</th>';
+			$table .= '<th>'.'Criação'.'</th>';
+			$table .= '<th>'.'Remoção'.'</th>';
+			$table .= '<th>'.'Motivo'.'</th>';
 			$table .= '<tbody>';
 
 			while($row = $result->fetch_assoc()){
@@ -65,6 +71,9 @@
 				$table .= '<td>'.$row['agencia'].'</td>';
 				$table .= '<td align="center">'.$row['conta'].'</td>';
 				$table .= '<td align="right">'.number_format($row['saldo'],2,',','.').'</td>';
+				$table .= '<td align="center">'.date('d/m/Y H:i:s',strtotime($row['criacao'])).'</td>';
+				$table .= '<td align="center">'.date('d/m/Y H:i:s',strtotime($row['remocao'])).'</td>';
+				$table .= '<td align="center">'.$row['motivo'].'</td>';
 				$table .= '</tr>';
 			}
 			$table .= '</tbody></table></center></body>';
